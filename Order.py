@@ -1,13 +1,5 @@
 class Order:
     """docstring"""
-
-    def __init__(self):
-        """Constructor"""
-        self.departure_point = None
-        self.arrival_point = None
-        self.tariff = None
-        self.cost = None
-
     def __init__(self, departure_point: str, arrival_point: str, tariff: str, cost: int) -> None:
         """Constructor with parameters"""
         self.departure_point = departure_point

@@ -1,22 +1,7 @@
-class Location:
-    # i don't think we should use this class (?)
-    pass
-
-
 class Client:
     """docstring"""
-
-    def __init__(self):
-        """Constructor"""
-        self.requisites = None
-        self.selected_points = None
-        self.bonuses = None
-        self.phone_number = None
-        self.location = None
-
     def __init__(self, requisites: str, selected_points: list, phone_number: str,
-                 location: Location, bonuses: int) -> None:
-
+                 location: str, bonuses: int) -> None:
         """Constructor with parameters"""
         self.requisites = requisites
         self.selected_points = selected_points
@@ -29,10 +14,14 @@ class Client:
         pass
 
     @property
-    def get_location(self) -> Location:
-        self.__update_location()
-        return self.location
+    def location(self):
+        return self.__location
+
+    @location.setter
+    def location(self, location: str):
+        self.__location = location
 
     @property
-    def set_location(self, new_location: Location) -> None:
-        self.location = new_location
+    def get_location(self) -> str:
+        self.__update_location()
+        return self.location
