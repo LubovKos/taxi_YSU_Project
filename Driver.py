@@ -47,4 +47,6 @@ class Driver:
             return True
         return False
 
-
+    def print_info(self):
+        self.__car.print_info()
+        print("Driver: ", self.__full_name, self.__user_id, self.__location, self.__bank, sep=' | ')

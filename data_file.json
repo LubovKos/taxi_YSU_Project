@@ -1,0 +1,30 @@
+[
+    {
+        "car":{
+            "license_plate": "K980TA76",
+            "color": "blue",
+            "brand": "Ford",
+            "capacity": 5,
+            "child_seat_availability": true,
+            "category": "economy class"
+        },
+        "full_name": "Makhno Nikolai Sergeevich",
+        "user_id": "2139u8",
+        "location": "The Red Square",
+        "bank": "Sberbank"
+    },
+    {
+        "car":{
+            "license_plate": "H544YE77",
+            "color": "white",
+            "brand": "Lexus",
+            "capacity": 2,
+            "child_seat_availability": false,
+            "category": "business class"
+        },
+        "full_name": "Igonin Sergey Alexandrovich",
+        "user_id": "kl0un1",
+        "location": "Vcusno and tochka",
+        "bank": "Alphabank"
+    }
+]
