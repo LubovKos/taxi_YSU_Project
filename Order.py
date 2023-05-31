@@ -13,14 +13,20 @@ class Order:
     def get_id(self):
         return self.id
 
+    def get_departure_point(self):
+        return self.departure_point
+
+    def get_arrival_point(self):
+        return self.arrival_point
+
     def set_depart_point(self, point: str):
         self.departure_point = point
 
-    def set_arrival_point(self):
-        pass
+    def set_arrival_point(self, point: str):
+        self.arrival_point = point
 
-    def set_tariff(self):
-        pass
+    def set_tariff(self, tar: str):
+        self.tariff = tar
 
     def calc_cost(self):
         pass
