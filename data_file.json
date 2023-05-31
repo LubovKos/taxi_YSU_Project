@@ -11,7 +11,7 @@
         "full_name": "Makhno Nikolai Sergeevich",
         "user_id": "2139u8",
         "location": "The Red Square",
-        "bank": "Sberbank"
+        "bank": "2456 9283 1734 2671"
     },
     {
         "car":{
@@ -20,11 +20,109 @@
             "brand": "Lexus",
             "capacity": 2,
             "child_seat_availability": false,
-            "category": "business class"
+            "category": "comfort class"
         },
         "full_name": "Igonin Sergey Alexandrovich",
-        "user_id": "kl0un1",
+        "user_id": "kp0pn1",
         "location": "Vcusno and tochka",
-        "bank": "Alphabank"
+        "bank": "1253 9378 6712 1276"
+    },
+    {
+        "car":{
+            "license_plate": "O100PA76",
+            "color": "red",
+            "brand": "Volvo",
+            "capacity": 7,
+            "child_seat_availability": true,
+            "category": "comfort class"
+        },
+        "full_name": "Kim Alex Afanasievich",
+        "user_id": "0ldf5s",
+        "location": "Aura Shopping Center",
+        "bank": "2829 0181 1827 1874"
+    },
+    {
+        "car":{
+            "license_plate": "C305OT14",
+            "color": "white",
+            "brand": "Lada",
+            "capacity": 5,
+            "child_seat_availability": false,
+            "category": "economy class"
+        },
+        "full_name": "Kotov Ivan Akakievich",
+        "user_id": "h3hg1l",
+        "location": "School 50",
+        "bank": "2301 7848 1874 8735"
+    },
+    {
+        "car":{
+            "license_plate": "K441TO76",
+            "color": "green",
+            "brand": "Toyota",
+            "capacity": 5,
+            "child_seat_availability": true,
+            "category": "comfort class"
+        },
+        "full_name": "Dremin Igor Vasilyevich",
+        "user_id": "bs7vw3",
+        "location": "Lower village",
+        "bank": "6574 9285 2615 9734"
+    },
+    {
+        "car":{
+            "license_plate": "B666TC76",
+            "color": "black",
+            "brand": "Cherry",
+            "capacity": 4,
+            "child_seat_availability": false,
+            "category": "economy class"
+        },
+        "full_name": "Sokolov Egor Timofeevich",
+        "user_id": "m9j7g1",
+        "location": "Tolbukhina",
+        "bank": "1233 5421 8742 8404"
+    },
+    {
+        "car":{
+            "license_plate": "X777XX77",
+            "color": "black",
+            "brand": "Mercedes-Benz",
+            "capacity": 5,
+            "child_seat_availability": true,
+            "category": "business class"
+        },
+        "full_name": "Makhno Dobrynya Nikitievich",
+        "user_id": "d0r0l0",
+        "location": "Faculty of Mathematics of Yarsu",
+        "bank": "0987 3428 7284 8175"
+    },
+    {
+        "car":{
+            "license_plate": "A387BA29",
+            "color": "white",
+            "brand": "Opel",
+            "capacity": 2,
+            "child_seat_availability": false,
+            "category": "economy class"
+        },
+        "full_name": "Lysikov Anatoly Petrovich",
+        "user_id": "s12fga",
+        "location": "Volkovsky Theater",
+        "bank": "5757 9292 7175 8028"
+    },
+    {
+        "car":{
+            "license_plate": "P905OT76",
+            "color": "pink",
+            "brand": "BMW",
+            "capacity": 5,
+            "child_seat_availability": true,
+            "category": "comfort class"
+        },
+        "full_name": "Maidanov Obidjon Martirosyanovich",
+        "user_id": "pop921",
+        "location": "Sovetskaya Square",
+        "bank": "9090 8579 8888 7313"
     }
 ]
