@@ -35,6 +35,10 @@ class Driver:
     def get_location(self):
         return self.__location
 
+    @property
+    def get_category(self):
+        return self.__car.get_category
+
     def set_location(self, location: str):
         self.__location = location
 
