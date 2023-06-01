@@ -35,8 +35,18 @@ class Order:
             break
         return arrival_point
 
-    def set_tariff(self, tar: str):
-        self.tariff = tar
+    def set_tariff(self, tar: str) -> str:
+        while True:
+            print("Введите тариф:")
+            for i in range(len(self.__all_rate)): #
+                print("Тариф №{}: {}".format(i + 1, self.__all_rate[i]))
+            rate = input().lower().strip()
+            if 0 <= rate < len(self.__all_rate):
+                print("Тариф №{} выбран!".format(rate))
+                break
+            print("Ошибка ввода, повторите!")
+            break
+        return rate
 
     def calc_cost(self):
         pass
