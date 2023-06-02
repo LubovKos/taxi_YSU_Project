@@ -1,3 +1,5 @@
+import json
+
 from Order import Order
 from Client import Client
 
@@ -7,6 +9,21 @@ class ClientsManager:
         self.__inactive_clients: list[Client] = []
         self.__busy_clients: list[Client] = []
         self.__active_clients: list[Client] = []
+
+    def download_clients(self, file: str) -> None:
+        with open(file, "r") as read_file:
+            data = json.load(read_file)
+        for person in data:
+            client = Client(person["requisites"], person["selected_points"], person["phone_number"],
+                            person["location"], person["bonuses"], person["name"])
+            self.__inactive_clients.append(client)
+
+    # переписать
+    def activate_clients(self):
+        for client in self.__inactive_clients:
+            self.__active_clients.append(client)
+            # self.__inactive_clients.remove(client)
+        print("_________________________")
 
     # ??
     def __choose_client(self) -> int:
