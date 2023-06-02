@@ -1,83 +1,65 @@
 [
     {
-        "order_id": "87t6u7",
         "name": "Zhukov Ivan Viktorovich",
-        "requisites": "8976 3577 0886 0974", 
-        "selected_points": "The Red Square",
-        "bonuses": "201",
+        "requisites": "8976 3577 0886 0974",
+        "bonuses": 201,
         "phone_number": "89806258767",
         "location": "Middle village"
     },
     {
-        "order_id": "8971ui",
         "name": "Ivanov Nikolay Olegovich",
         "requisites": "5760 9754 8548 0844",
-        "selected_points": "Giant Shopping Center",
-        "bonuses": "10",
+        "bonuses": 10,
         "phone_number": "89809378890",
         "location": "Provincial College"
     },
     {
-        "order_id": "1jky15",
         "name": "Lanovoy Dmitriy Konstantinovich",
         "requisites": "9747 9751 4134 6480",
-        "selected_points": "Yarkiy Shopping Center",
-        "bonuses": "45",
+        "bonuses": 45,
         "phone_number": "89679804531",
         "location": "Oktyabrskaya Square"
     },
     {
-        "order_id": "9vc98l",
         "name": "Polyakova Alisa Edvardovna",
         "requisites": "9384 6378 3580 6469",
-        "selected_points": "The Red Square",
-        "bonuses": "129",
+        "bonuses": 129,
         "phone_number": "89752458635",
         "location": "Torgoviy pereulok"
     },
     {
-        "order_id": "4t78uz",
         "name": "Tverskoy Yuriy Mikchailovich",
         "requisites": "3579 4269 4780 4307",
-        "selected_points": "Bogoyavlenskaya Square",
-        "bonuses": "84",
+        "bonuses": 84,
         "phone_number": "89809538645",
         "location": "Vcusno and tochka"
     },
     {
-        "order_id": "913j30",
         "name": "Zimova Anastasia Maksimovna",
         "requisites": "2950 6302 7936 7584",
-        "selected_points": "Aura Shopping Center",
-        "bonuses": "91",
+        "bonuses": 91,
         "phone_number": "89891371289",
         "location": "Sovetskaya Square"
     },
     {
-        "order_id": "fv79s9",
         "name": "Petrov Nikita Aleksandrovich",
         "requisites": "9258 7437 5227 8482",
-        "selected_points": "Yaroslavl-Main Railway Station",
-        "bonuses": "1",
+        "bonuses": 1,
         "phone_number": "89806292409",
         "location": "Bogoyavlenskaya Square"
     },
     {
-        "order_id": "o8767z",
         "name": "Krasnova Vera Vitalievna",
         "requisites": "8530 2606 4270 4800",
-        "selected_points": "Globus Hypermarket",
-        "bonuses": "0",
+        "bonuses": 0,
         "phone_number": "89809258364",
         "location": "Middle village"
     },
     {
-        "order_id": "tyum9",
         "name": "Sobolev Mikchail Petrovich",
         "requisites": "6489 2568 2678 3780",
-        "selected_points": "School 50",
-        "bonuses": "9",
+        "bonuses": 9,
         "phone_number": "89806258914",
         "location": "Faculty of Mathematics of Yarsu"
-    },
+    }
 ]
