@@ -17,9 +17,9 @@ class TaxistManager:
             data = json.load(read_file)
         for person in data:
             car = person["car"]
-            driver_car = Car(car["license_plate"], car["color"], car["brand"], car["capacity"],
+            driver_car = Car(car["license_plate"], car["color"], car["brand"],
                              car["child_seat_availability"], car["category"])
-            driver = Driver(driver_car, person["full_name"], person["user_id"], person["location"], person["bank"])
+            driver = Driver(driver_car, person["full_name"], person["location"], person["bank"])
             self.__inactive_drivers.append(driver)
 
     # переписать

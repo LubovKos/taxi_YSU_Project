@@ -11,12 +11,11 @@ class Car:
         self.__license_plate = license_plate
         self.__color = color
         self.__brand = brand
-        self.__capacity = capacity
         self.__child_seat_availability = child_seat_availability
         self.__category = category
 
     def print_info(self):
-        print("Car:", self.__license_plate, self.__color, self.__brand, self.__capacity,
+        print("Car:", self.__license_plate, self.__color, self.__brand,
               self.__child_seat_availability, self.__category, sep=' | ')
 
     @property

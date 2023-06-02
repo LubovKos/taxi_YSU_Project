@@ -12,7 +12,6 @@ class Driver:
         """Constructor with parameters"""
         self.__car = car
         self.__full_name = full_name
-        self.__user_id = user_id
         self.__location = location
         # bank or driver's bank account (?)
         self.__bank = bank
@@ -53,4 +52,4 @@ class Driver:
 
     def print_info(self):
         self.__car.print_info()
-        print("Driver: ", self.__full_name, self.__user_id, self.__location, self.__bank, sep=' | ')
+        print("Driver: ", self.__full_name, self.__location, self.__bank, sep=' | ')
