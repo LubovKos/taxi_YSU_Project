@@ -1,5 +1,7 @@
 import json
 
+import numpy
+
 from Order import Order
 from Client import Client
 
@@ -14,16 +16,24 @@ class ClientsManager:
         with open(file, "r") as read_file:
             data = json.load(read_file)
         for person in data:
-            client = Client(person["requisites"], person["selected_points"], person["phone_number"],
-                            person["location"], person["bonuses"], person["name"])
+            client = Client(person["requisites"], person["phone_number"],
+                            person["bonuses"], person["name"], person["location"])
             self.__inactive_clients.append(client)
 
-    # переписать
     def activate_clients(self):
-        for client in self.__inactive_clients:
-            self.__active_clients.append(client)
-            # self.__inactive_clients.remove(client)
-        print("_________________________")
+        if len(self.__inactive_clients) == 0:
+            return
+        random_integer_array = numpy.random.random_integers(0, len(self.__inactive_clients) - 1, 6)
+        print(random_integer_array)
+        i = len(self.__inactive_clients) - 1
+        while i >= 0:
+            clients = self.__inactive_clients[i]
+            if i in random_integer_array:
+                self.__active_clients.append(clients)
+                self.__inactive_clients.remove(clients)
+            i -= 1
+        for clients in self.__active_clients:
+            clients.print_info()
 
     # ??
     def __choose_client(self) -> int:

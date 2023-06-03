@@ -1,4 +1,5 @@
 import json
+import numpy
 
 import Map
 from Car import Car
@@ -22,13 +23,20 @@ class TaxistManager:
             driver = Driver(driver_car, person["full_name"], person["location"], person["bank"])
             self.__inactive_drivers.append(driver)
 
-    # переписать
     def activate_drivers(self):
-        for driver in self.__inactive_drivers:
-            self.__active_drivers.append(driver)
-            # self.__inactive_drivers.remove(driver)
+        if len(self.__inactive_drivers) == 0:
+            return
+        random_integer_array = numpy.random.random_integers(0, len(self.__inactive_drivers) - 1, 6)
+        print(random_integer_array)
+        i = len(self.__inactive_drivers) - 1
+        while i >= 0:
+            driver = self.__inactive_drivers[i]
+            if i in random_integer_array:
+                self.__active_drivers.append(driver)
+                self.__inactive_drivers.remove(driver)
+            i -= 1
+        for driver in self.__active_drivers:
             driver.print_info()
-        print("_________________________")
 
     def search_free_driver(self, order: Order, mapp: Map) -> Driver:
         if len(self.__active_drivers) != 0:
