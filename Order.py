@@ -54,10 +54,12 @@ class Order:
 
     def input_tariff(self):
         print('Введите тариф:')
+        for i in range(len(tariff_list)):
+                print("Тариф №{}: {}".format(i + 1, tariff_list[i]))
 
         while True:
             tariff = input().strip()
-            if tariff in tariff_list:
+            if 0 <= rate < len(self.__all_rate):
                 print('Тариф {} выбран!'.format(tariff))
                 self.__tariff = tariff
                 break
