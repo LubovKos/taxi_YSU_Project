@@ -1,12 +1,11 @@
 class Client:
     """docstring"""
-    def __init__(self, requisites: str, selected_points: list, phone_number: str,
+    def __init__(self, requisites: str, phone_number: str,
                  location: str, bonuses: int, name: str) -> None:
         """Constructor with parameters"""
         self.order_id = -1
         self.name = name
         self.requisites = requisites
-        self.selected_points = selected_points
         self.bonuses = bonuses
         self.phone_number = phone_number
         self.location = location
