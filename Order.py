@@ -59,7 +59,7 @@ class Order:
 
         while True:
             tariff = input().strip()
-            if 1 <= rate <= len(self.__all_rate):
+            if 1 <= tariff <= len(self.__all_rate):
                 print('Тариф {} выбран!'.format(tariff))
                 self.__tariff = tariff
                 break
