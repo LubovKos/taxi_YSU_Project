@@ -19,10 +19,18 @@ class Order:
     def get_arrival_point(self):
         return self.arrival_point
 
-    def set_depart_point(self, point: str):
-        self.departure_point = point
+    def input_depart_point(self):
+        while True:
+            print("Введите начальную точку маршрута:")
+            depart_point = input().lower().strip()
+            if 0 <= depart_point < len(self.__all_depart_points):
+                print("Начальный пункт выбран!".format(depart_point))
+                break
+            print("Ошибка ввода, повторите!")
+            break
+        return depart_point
 
-    def print_arrival_point(self, point: str) -> str:
+    def input_arrival_point(self) -> str:
         while True:
             print("Введите конечную точку маршрута:")
             arrival_point = input().lower().strip()
@@ -33,7 +41,7 @@ class Order:
             break
         return arrival_point
 
-    def print_tariff(self, tar: str) -> str:
+    def input_tariff(self) -> str:
         while True:
             print("Введите тариф:")
             rate = input().lower().strip()
