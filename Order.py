@@ -10,19 +10,27 @@ tariff_list = ['economy class', 'comfort class', 'business class']
 class Order:
     """docstring"""
     def __init__(self):
-        self.departure_point: str = ""
-        self.arrival_point: str = ""
-        self.tariff: str = ""
-        self.id: uuid = uuid.uuid4()
+        self.__departure_point: str = ""
+        self.__arrival_point: str = ""
+        self.__tariff: str = ""
+        self.__id: uuid = uuid.uuid4()
+        self.__cost = None
 
     def get_id(self):
-        return self.id
+        return self.__id
 
     def get_departure_point(self):
-        return self.departure_point
+        return self.__departure_point
 
     def get_arrival_point(self):
-        return self.arrival_point
+        return self.__arrival_point
+    
+    @property
+    def get_tariff(self):
+        return self.__tariff
+    
+    def set_depart_point(self, point: str):
+        self.__departure_point = point
 
     def input_depart_point(self):
         print('Введите начальную точку маршрута:')
