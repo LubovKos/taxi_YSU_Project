@@ -14,6 +14,7 @@ class Order:
         self.__arrival_point: str = ""
         self.__tariff: str = ""
         self.__id: uuid = uuid.uuid4()
+        self.__duration = None
         self.__cost = None
 
     def get_id(self):
@@ -64,6 +65,9 @@ class Order:
                 self.__tariff = tariff
                 break
             print('Ошибка ввода, повторите!')
+
+    def calc_duration(self, distance: int):
+        self.__duration = float(distance / 31)
 
     def calc_cost(self):
         pass
