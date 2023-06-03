@@ -6,7 +6,7 @@ class Driver:
     """docstring"""
     def __init__(self,
                  car: Car,
-                 full_name: str, user_id: str,
+                 full_name: str,
                  location: str, bank: str,
                  start_time: float = None) -> None:
         """Constructor with parameters"""
