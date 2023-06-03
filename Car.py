@@ -5,7 +5,7 @@ from typing import Optional
 class Car:
     """docstring"""
 
-    def __init__(self, license_plate: str, color: str, brand: str, capacity: int,
+    def __init__(self, license_plate: str, color: str, brand: str,
                  child_seat_availability: bool, category: str) -> None:
         """Constructor with parameters"""
         self.__license_plate = license_plate
