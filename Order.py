@@ -1,5 +1,11 @@
 import uuid
 
+points: list = []
+with open('names.txt') as file:
+    points = [point.rstrip() for point in file]
+
+tariff_list = ['economy class', 'comfort class', 'business class']
+
 
 class Order:
     """docstring"""
@@ -19,10 +25,6 @@ class Order:
         return self.arrival_point
 
     def input_depart_point(self):
-        points: list = []
-        with open('names.txt') as file:
-            points = [point.rstrip() for point in file]
-
         print('Введите начальную точку маршрута:')
         while True:
             departure_point = input().strip()
@@ -30,13 +32,9 @@ class Order:
                 print('Начальный пункт {} выбран!'.format(departure_point))
                 self.__departure_point = departure_point
                 break
-            print('Ошибка ввода, повторите!')
+            print("Ошибка ввода, повторите!")
 
-    def input_arrival_point(self) -> str:
-        points: list = []
-        with open('names.txt') as file:
-            points = [point.rstrip() for point in file]
-
+    def input_arrival_point(self):
         print('Введите конечную точку маршрута:')
         while True:
             arrival_point = input().strip()
@@ -46,8 +44,7 @@ class Order:
                 break
             print('Ошибка ввода, повторите!')
 
-    def input_tariff(self) -> str:
-        tariff_list = ['economy class', 'comfort class', 'business class']
+    def input_tariff(self):
         print('Введите тариф:')
 
         while True:
@@ -56,7 +53,7 @@ class Order:
                 print('Тариф {} выбран!'.format(tariff))
                 self.__tariff = tariff
                 break
-            print("Ошибка ввода, повторите!")
+            print('Ошибка ввода, повторите!')
 
     def calc_cost(self):
         pass
