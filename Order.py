@@ -19,37 +19,44 @@ class Order:
         return self.arrival_point
 
     def input_depart_point(self):
+        points: list = []
+        with open('names.txt') as file:
+            points = [point.rstrip() for point in file]
+
+        print('Введите начальную точку маршрута:')
         while True:
-            print("Введите начальную точку маршрута:")
-            depart_point = input().lower().strip()
-            if 0 <= depart_point < len(self.__all_depart_points):
-                print("Начальный пункт выбран!".format(depart_point))
+            departure_point = input().strip()
+            if departure_point in points:
+                print('Начальный пункт {} выбран!'.format(departure_point))
+                self.__departure_point = departure_point
                 break
-            print("Ошибка ввода, повторите!")
-            break
-        return depart_point
+            print('Ошибка ввода, повторите!')
 
     def input_arrival_point(self) -> str:
+        points: list = []
+        with open('names.txt') as file:
+            points = [point.rstrip() for point in file]
+
+        print('Введите конечную точку маршрута:')
         while True:
-            print("Введите конечную точку маршрута:")
-            arrival_point = input().lower().strip()
-            if 0 <= arrival_point < len(self.__all_arrival_points):
-                print("Конечный пункт выбран!".format(arrival_point))
+            arrival_point = input().strip()
+            if arrival_point in points:
+                print('Конечный пункт {} выбран!'.format(arrival_point))
+                self.__arrival_point = arrival_point
                 break
-            print("Ошибка ввода, повторите!")
-            break
-        return arrival_point
+            print('Ошибка ввода, повторите!')
 
     def input_tariff(self) -> str:
+        tariff_list = ['economy class', 'comfort class', 'business class']
+        print('Введите тариф:')
+
         while True:
-            print("Введите тариф:")
-            rate = input().lower().strip()
-            if 0 <= rate < len(self.__all_rate):
-                print("Тариф №{} выбран!".format(rate))
+            tariff = input().strip()
+            if tariff in tariff_list:
+                print('Тариф {} выбран!'.format(tariff))
+                self.__tariff = tariff
                 break
             print("Ошибка ввода, повторите!")
-            break
-        return rate
 
     def calc_cost(self):
         pass
