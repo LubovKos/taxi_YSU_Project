@@ -1,9 +1,13 @@
 import time
-from Car import Car
+import uuid
+
+from Order.Order import Order
+from Driver.Car import Car
 
 
 class Driver:
     """docstring"""
+
     def __init__(self,
                  car: Car,
                  full_name: str,
@@ -16,17 +20,22 @@ class Driver:
         # bank or driver's bank account (?)
         self.__bank = bank
         self.__start_time = start_time
+        self.__order_id = None
         self.__is_busy = False
+        self.__duration_trip = None
 
-    #занять водителя
-    def pick_up(self):
+    # занять водителя
+    def pick_up(self, new_order: Order):
+        self.__order_id = new_order.get_id
         self.__is_busy = True
+        self.starting_trip()
 
-    #освободить водителя
+    # освободить водителя
     def release(self):
+        self.__order_id = None
         self.__is_busy = False
 
-    #начало поездки
+    # начало поездки
     def starting_trip(self):
         self.__start_time = time.time()
 
@@ -35,18 +44,31 @@ class Driver:
         return self.__location
 
     @property
+    def get_full_name(self):
+        return self.__full_name
+
+    @property
     def get_category(self):
         return self.__car.get_category
 
+    @property
+    def get_order_id(self):
+        return self.__order_id
+
     def set_location(self, location: str):
         self.__location = location
+
+    def set_duration_trip(self, duration_to_client, order_duration):
+        self.__duration_trip = duration_to_client + order_duration
 
     def __update_location(self):
         pass
 
     @property
-    def is_finished(self, duration: float = None) -> bool:
-        if time.time() - self.__start_time > duration:
+    def is_finished(self) -> bool:
+        test_time_start = time.localtime(self.__start_time)
+        test_time_finish = time.localtime(self.__start_time + self.__duration_trip)
+        if time.time() - self.__start_time > self.__duration_trip:
             return True
         return False
 

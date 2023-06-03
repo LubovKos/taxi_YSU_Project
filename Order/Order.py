@@ -1,14 +1,14 @@
 import uuid
 
-points: list = []
-with open('names.txt') as file:
-    points = [point.rstrip() for point in file]
+with open('Data/names.txt') as file:
+    points = [line.rstrip() for line in file]
 
 tariff_list = ['economy class', 'comfort class', 'business class']
 
 
 class Order:
     """docstring"""
+
     def __init__(self):
         self.__departure_point: str = ""
         self.__arrival_point: str = ""
@@ -17,6 +17,7 @@ class Order:
         self.__duration = None
         self.__cost = None
 
+    @property
     def get_id(self):
         return self.__id
 
@@ -25,27 +26,22 @@ class Order:
 
     def get_arrival_point(self):
         return self.__arrival_point
-    
+
     @property
     def get_tariff(self):
         return self.__tariff
-    
+
+    def set_tariff(self, new_tariff):
+        self.__tariff = new_tariff
+
     def set_depart_point(self, point: str):
         self.__departure_point = point
-
-    def input_depart_point(self):
-        print('Введите начальную точку маршрута:')
-        while True:
-            departure_point = input().strip()
-            if departure_point in points:
-                print('Начальный пункт {} выбран!'.format(departure_point))
-                self.__departure_point = departure_point
-                break
-            print("Ошибка ввода, повторите!")
 
     def input_arrival_point(self):
         print('Введите конечную точку маршрута:')
         while True:
+            for i in range(len(points)):
+                print('Пункт №{}: {}'.format(i + 1, points[i]))
             arrival_point = input().strip()
             if arrival_point in points:
                 print('Конечный пункт {} выбран!'.format(arrival_point))
@@ -56,15 +52,19 @@ class Order:
     def input_tariff(self):
         print('Введите тариф:')
         for i in range(len(tariff_list)):
-                print("Тариф №{}: {}".format(i + 1, tariff_list[i]))
+            print("Тариф №{}: {}".format(i + 1, tariff_list[i]))
 
         while True:
-            tariff = int(input()).strip()
-            if 1 <= tariff <= len(self.__all_rate):
+            tariff = int(input())
+            if 1 <= tariff <= len(tariff_list):
                 print('Тариф {} выбран!'.format(tariff))
                 self.__tariff = tariff
                 break
             print('Ошибка ввода, повторите!')
+
+    @property
+    def get_duration(self):
+        return self.__duration
 
     def calc_duration(self, distance: int):
         self.__duration = float(distance / 31)
@@ -74,3 +74,19 @@ class Order:
 
     def payment_process(self):
         pass
+
+
+"""
+    def set_tariff(self, tar: str) -> str:
+        while True:
+            print("Введите тариф:")
+            for i in range(len(self.__all_rate)): #
+                print("Тариф №{}: {}".format(i + 1, self.__all_rate[i]))
+            rate = input().lower().strip()
+            if 0 <= rate < len(self.__all_rate):
+                print("Тариф №{} выбран!".format(rate))
+                break
+            print("Ошибка ввода, повторите!")
+            break
+        return rate
+"""

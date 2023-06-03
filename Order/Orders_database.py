@@ -1,4 +1,4 @@
-import Order
+from Order import Order
 
 
 class MyOrder(type):
@@ -17,7 +17,7 @@ class OrderDataBase(metaclass=MyOrder):
         self.__order_dict = {}
 
     def add_order(self, new_order: Order):
-        self.__order_dict[new_order.id] = Order
+        self.__order_dict[new_order.get_id] = Order
 
     def delete_order(self, del_id: str):
         self.__order_dict.pop(del_id)
