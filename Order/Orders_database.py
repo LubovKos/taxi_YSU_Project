@@ -25,3 +25,6 @@ class OrderDataBase(metaclass=MyOrder):
     def output_orders(self):
         for key, value in self.__order_dict.items():
             print(key)
+            
+    def is_in_base(self, search_id: uuid) -> bool:
+        return search_id in self.__order_dict
