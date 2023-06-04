@@ -58,7 +58,7 @@ class Order:
             tariff = int(input())
             if 1 <= tariff <= len(tariff_list):
                 print('Тариф {} выбран!'.format(tariff))
-                self.__tariff = tariff
+                self.__tariff = tariff_list[tariff - 1]
                 break
             print('Ошибка ввода, повторите!')
 

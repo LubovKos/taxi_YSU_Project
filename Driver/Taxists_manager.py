@@ -20,7 +20,7 @@ class TaxistManager:
         for person in data:
             car = person['car']
             driver_car = Car(car['license_plate'], car['color'], car['brand'],
-                             car['child_seat_availability'], car['category'])
+                             car['child_seat_availability'], car['category'], car['image'])
             driver = Driver(driver_car, person['full_name'], person['location'], person['bank'])
             self.__inactive_drivers.append(driver)
         for elem in self.__inactive_drivers:
@@ -50,10 +50,7 @@ class TaxistManager:
                 if order.get_tariff == driver.get_category:
                     if self.__map.calc_distance(driver.get_location, order.get_departure_point()) < minimal_dist:
                         minimal_dist = self.__map.calc_distance(driver.get_location, order.get_departure_point())
-                        self.busy_drivers.append(driver)
-                        self.__active_drivers.remove(driver)
-                        driver.pick_up(order)
-                        driver.set_duration_trip(minimal_dist, order.get_duration)
+                        driver_found = True
                         suitable_driver = driver
 
             if driver_found is False:
@@ -65,25 +62,28 @@ class TaxistManager:
                     for driver in self.__active_drivers:
                         if self.__map.calc_distance(driver.get_location, order.get_departure_point()) < minimal_dist:
                             minimal_dist = self.__map.calc_distance(driver.get_location, order.get_departure_point())
-                            self.busy_drivers.append(driver)
-                            self.__active_drivers.remove(driver)
-                            driver.pick_up(order)
-                            driver.set_duration_trip(minimal_dist, order.get_duration)
                             suitable_driver = driver
+
             print('Водитель найден!')
+            self.busy_drivers.append(suitable_driver)
+            self.__active_drivers.remove(suitable_driver)
+            suitable_driver.pick_up(order)
+            suitable_driver.set_duration_trip(minimal_dist, order.get_duration)
             suitable_driver.print_info()
             return suitable_driver
         return None
 
     def tick(self):
-        for i in range(len(self.busy_drivers)):
+        i = 0
+        while i < len(self.busy_drivers):
             driver = self.busy_drivers[i]
             if driver.is_finished:
                 driver.release()
                 self.busy_drivers.remove(driver)
                 self.__active_drivers.append(driver)
                 i -= 1
-                print('Водитель {} завершил поездку!'.format(driver.get_full_name))
+                print('\033[44mВодитель {} завершил поездку!\033[0m'.format(driver.get_full_name))
+            i += 1
 
         for driver in self.__active_drivers:
             pass

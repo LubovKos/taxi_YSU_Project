@@ -5,7 +5,8 @@
             "color": "blue",
             "brand": "Ford",
             "child_seat_availability": true,
-            "category": "economy class"
+            "category": "economy class",
+            "image": "BlueFord.jpg"
         },
         "full_name": "Makhno Nikolai Sergeevich",
         "location": "The Red Square",
@@ -17,7 +18,8 @@
             "color": "white",
             "brand": "Lexus",
             "child_seat_availability": false,
-            "category": "comfort class"
+            "category": "comfort class",
+            "image": "WhiteLexus.jpg"
         },
         "full_name": "Igonin Sergey Alexandrovich",
         "location": "Vcusno and tochka",
@@ -29,7 +31,8 @@
             "color": "red",
             "brand": "Volvo",
             "child_seat_availability": true,
-            "category": "comfort class"
+            "category": "comfort class",
+            "image": "RedVolvo.jpeg"
         },
         "full_name": "Kim Alex Afanasievich",
         "location": "Aura Shopping Center",
@@ -41,7 +44,8 @@
             "color": "white",
             "brand": "Lada",
             "child_seat_availability": false,
-            "category": "economy class"
+            "category": "economy class",
+            "image": "WhiteLada.jpg"
         },
         "full_name": "Kotov Ivan Akakievich",
         "location": "School 50",
@@ -53,7 +57,8 @@
             "color": "green",
             "brand": "Toyota",
             "child_seat_availability": true,
-            "category": "comfort class"
+            "category": "comfort class",
+            "image": "GreenToyota.jpg"
         },
         "full_name": "Dremin Igor Vasilyevich",
         "location": "Lower village",
@@ -65,7 +70,8 @@
             "color": "black",
             "brand": "Cherry",
             "child_seat_availability": false,
-            "category": "economy class"
+            "category": "economy class",
+            "image": "BlackCherry.jpg"
         },
         "full_name": "Sokolov Egor Timofeevich",
         "location": "Tolbukhina",
@@ -77,7 +83,8 @@
             "color": "black",
             "brand": "Mercedes-Benz",
             "child_seat_availability": true,
-            "category": "business class"
+            "category": "business class",
+            "image": "BlackMercedes.jpg"
         },
         "full_name": "Makhno Dobrynya Nikitievich",
         "location": "Faculty of Mathematics of Yarsu",
@@ -89,7 +96,8 @@
             "color": "white",
             "brand": "Opel",
             "child_seat_availability": false,
-            "category": "economy class"
+            "category": "economy class",
+            "image": "WhiteOpel.jpg"
         },
         "full_name": "Lysikov Anatoly Petrovich",
         "location": "Volkovsky Theater",
@@ -101,7 +109,8 @@
             "color": "pink",
             "brand": "BMW",
             "child_seat_availability": true,
-            "category": "comfort class"
+            "category": "comfort class",
+            "image": "PinkBMW.jpg"
         },
         "full_name": "Maidanov Obidjon Martirosyanovich",
         "location": "Sovetskaya Square",

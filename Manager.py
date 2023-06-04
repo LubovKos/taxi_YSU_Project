@@ -20,7 +20,6 @@ class Manager:
         self.__taxists_manager.activate_drivers()
         self.__clients_manager.download_clients('Data/clients_data_file.json')
         self.__clients_manager.activate_clients()
-
         while True:
             self.__taxists_manager.tick()
             if self.__clients_manager.have_seeking_clients:
