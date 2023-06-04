@@ -15,6 +15,18 @@ class Manager:
         names = open('Data/names.txt')
         self.__map.download_places(names)
         self.__orders = OrderDataBase()
+    
+    def tick(self):
+        self.__taxists_manager.tick()
+        # прохожусь по базе заказов, если в бизи таксистах нет такого заказа - удаляю из базы заказ
+        for key in self.__orders.order_dict:
+            if not self.__taxists_manager.is_id_in_busy_drivers(key):
+                self.__orders.delete_order(key)
+
+        # прохожусь по бизи клиентам, если не нашел по айдишнику в базе заказов - для клиента закончилась поезка (списали бабки)
+        for client in self.__clients_manager.busy_clients:
+            if not self.__orders.is_in_base(client.get_order_id()):
+                self.__clients_manager.closing_order(client)
 
     def starting(self):
         self.__taxists_manager.download_drivers('Data/data_file.json')
