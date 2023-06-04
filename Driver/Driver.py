@@ -54,6 +54,10 @@ class Driver:
     @property
     def get_order_id(self):
         return self.__order_id
+    
+    @property
+    def get_car(self):
+        return self.__car
 
     def set_location(self, location: str):
         self.__location = location
