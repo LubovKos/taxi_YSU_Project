@@ -1,4 +1,5 @@
 import json
+import uuid
 import numpy
 
 from Order.Order import Order
@@ -66,12 +67,17 @@ class ClientsManager:
 
         return curr_order
 
-    def closing_order(self, order: Order):
+    def closing_order(self, client: Client):
         """
         order completion method:
         returning object to inactive pool
         """
-        for i in range(len(self.busy_clients)):
-            if self.busy_clients[i].get_order_id() == order.get_id:
-                self.__inactive_clients.append(self.busy_clients.pop(i))
-                break
+        self.__inactive_clients.append(client)
+        self.busy_clients.remove(client)
+        # тут надо что-то с оплатой придумать
+
+    def is_id_in_busy_clients(self, srch_id: uuid) -> bool:
+        for client in self.busy_clients:
+            if srch_id == client.get_order_id():
+                return True
+        return False
