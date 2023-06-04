@@ -2,6 +2,7 @@ from Clients.Clients_manager import ClientsManager
 from Driver.Taxists_manager import TaxistManager
 from Map import Map
 from Order.Orders_database import OrderDataBase
+from Drawer import Drawer
 
 
 class Manager:
