@@ -15,7 +15,7 @@ class OrderDataBase(metaclass=MyOrder):
     """Constructor"""
 
     def __init__(self):
-        self.__order_dict = {}
+        self.order_dict = {}
 
     def add_order(self, new_order: Order):
         self.__order_dict[new_order.get_id] = Order
