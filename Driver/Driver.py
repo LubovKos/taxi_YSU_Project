@@ -58,8 +58,8 @@ class Driver:
     def set_location(self, location: str):
         self.__location = location
 
-    def set_duration_trip(self, duration_to_client, order_duration):
-        self.__duration_trip = duration_to_client + order_duration
+    def set_duration_trip(self, dist_to_client, order_duration):
+        self.__duration_trip = dist_to_client / (8.61 * 60) + order_duration
 
     def __update_location(self):
         pass

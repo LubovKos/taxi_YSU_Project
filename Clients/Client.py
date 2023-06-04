@@ -39,4 +39,4 @@ class Client:
     @property
     def get_location(self) -> str:
         self.__update_location()
-        return self.location
+        return self.__location

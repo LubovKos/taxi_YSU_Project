@@ -83,7 +83,7 @@ class TaxistManager:
                 self.busy_drivers.remove(driver)
                 self.__active_drivers.append(driver)
                 i -= 1
-                print('Водитель {} завершил поездку!'.format(driver.get_full_name()))
+                print('Водитель {} завершил поездку!'.format(driver.get_full_name))
 
         for driver in self.__active_drivers:
             pass

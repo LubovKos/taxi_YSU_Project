@@ -67,7 +67,8 @@ class Order:
         return self.__duration
 
     def calc_duration(self, distance: int):
-        self.__duration = float(distance / 31)
+        print(distance)
+        self.__duration = float(distance / (8.61 * 60))
 
     def calc_cost(self):
         pass
