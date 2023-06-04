@@ -41,37 +41,41 @@ class TaxistManager:
         for elem in self.__active_drivers:
             elem.print_info()
 
-    def search_free_driver(self, order: Order) -> Driver | None:
-        if len(self.__active_drivers) != 0:
-            driver_found = False
-            minimal_dist = 1000000
-            # может мы и не найдем нужного водилу (?)
-            for driver in self.__active_drivers:
-                if order.get_tariff == driver.get_category:
-                    if self.__map.calc_distance(driver.get_location, order.get_departure_point()) < minimal_dist:
-                        minimal_dist = self.__map.calc_distance(driver.get_location, order.get_departure_point())
-                        driver_found = True
-                        suitable_driver = driver
+   def search_free_driver(self, order: Order) -> Driver | None:
+    if len(self.__active_drivers) != 0:
+        driver_found = False
+        minimal_dist = sys.maxsize
+        suitable_driver = self.__active_drivers[0]
+        for driver in self.__active_drivers:
+            curr_dist = self.__map.calc_distance(driver.get_location, order.get_departure_point())
+            if order.get_tariff == driver.get_category and curr_dist < minimal_dist:
+                minimal_dist = curr_dist
+                suitable_driver = driver
+                driver_found = True
 
-            if driver_found is False:
-                if order.get_tariff == 'economy class':
-                    order.set_tariff('comfort class')
-                elif order.get_tariff == 'comfort class':
-                    order.set_tariff('business class')
-                else:
-                    for driver in self.__active_drivers:
-                        if self.__map.calc_distance(driver.get_location, order.get_departure_point()) < minimal_dist:
-                            minimal_dist = self.__map.calc_distance(driver.get_location, order.get_departure_point())
-                            suitable_driver = driver
+        if driver_found is False:
+            if order.get_tariff == 'economy class':
+                print('Economy class cars were not found. We offer you a '
+                      'comfort class car. We are already looking for it...')
+                order.set_tariff('comfort class')
+            elif order.get_tariff == 'comfort class':
+                print('Comfort class cars were not found. We offer you a '
+                      'business class car. We are already looking for it...')
+                order.set_tariff('business class')
+            else:
+                print('Business class cars were not found. We offer you a '
+                      'economy class car. We are already looking for it...')
+                order.set_tariff('economy class')
+            return None
 
-            print('Водитель найден!')
-            self.busy_drivers.append(suitable_driver)
-            self.__active_drivers.remove(suitable_driver)
-            suitable_driver.pick_up(order)
-            suitable_driver.set_duration_trip(minimal_dist, order.get_duration)
-            suitable_driver.print_info()
-            return suitable_driver
-        return None
+        self.__busy_drivers.append(suitable_driver)
+        self.__active_drivers.remove(suitable_driver)
+        suitable_driver.pick_up(order)
+        suitable_driver.set_duration_trip(minimal_dist, order.get_duration)
+        print('Driver has been found!')
+        suitable_driver.print_info()
+        return suitable_driver
+    return None
 
     def tick(self):
         i = 0
@@ -82,7 +86,7 @@ class TaxistManager:
                 self.busy_drivers.remove(driver)
                 self.__active_drivers.append(driver)
                 i -= 1
-                print('\033[44mВодитель {} завершил поездку!\033[0m'.format(driver.get_full_name))
+                print('\033[44mDriver {} has completed the trip!\033[0m'.format(driver.get_full_name))
             i += 1
 
         for driver in self.__active_drivers:
