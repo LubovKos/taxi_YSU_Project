@@ -27,5 +27,9 @@ class Manager:
                 order.calc_duration(self.__map.calc_distance(order.get_departure_point(), order.get_arrival_point()))
                 self.__orders.add_order(order)
                 print('Идёт поиск машины...')
-                while self.__taxists_manager.search_free_driver(order) is None:
+                driver = self.__taxists_manager.search_free_driver(order)
+                while driver is None:
                     self.__taxists_manager.tick()
+                    driver = self.__taxists_manager.search_free_driver(order)
+                drawer = Drawer(driver)
+                drawer.draw_order()
