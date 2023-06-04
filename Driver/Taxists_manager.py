@@ -1,4 +1,5 @@
 import json
+import uuid
 import numpy
 
 from Map import Map
@@ -92,3 +93,9 @@ class TaxistManager:
         for driver in self.__active_drivers:
             pass
             # сделать рандомизацию передвижения незанятых водителей
+            
+    def is_id_in_busy_drivers(self, srch_id: uuid) -> bool:
+        for driver in self.busy_drivers:
+            if srch_id == driver.get_order_id():
+                return True
+        return False
