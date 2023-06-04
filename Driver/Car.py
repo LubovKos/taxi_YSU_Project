@@ -18,3 +18,20 @@ class Car:
     @property
     def get_category(self):
         return self.__category
+
+    @property
+    def get_image(self):
+        return self.__image
+
+    @property
+    def get_color(self):
+        return self.__color
+
+    @property
+    def get_license_plate(self):
+        return self.__license_plate
+
+    @property
+    def get_brand(self):
+        return self.__brand
+    
