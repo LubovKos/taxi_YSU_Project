@@ -29,6 +29,10 @@ class ClientsManager:
             self.__inactive_clients.append(client)
 
     def activate_clients(self):
+        """
+        The function randomly selects clients
+        from the object pool and declares them active
+        """
         if len(self.__inactive_clients) == 0:
             return
         random_integer_array = numpy.random.random_integers(0, len(self.__inactive_clients) - 1, 6)
@@ -41,6 +45,10 @@ class ClientsManager:
             i -= 1
 
     def choose_client(self) -> Client:
+        """
+        The function allows you to select clients
+        and transfer them from active to busy
+        """
         while True:
             print('Выберите клиента из списка:')
             for i in range(len(self.__active_clients)):
@@ -63,21 +71,13 @@ class ClientsManager:
         curr_order.input_arrival_point()
         curr_order.input_tariff()
         print('Заказ сформирован')
-
         return curr_order
 
     def closing_order(self, client: Client):
         """
-        order completion method:
+        Order completion method:
         returning object to inactive pool
         """
         self.__inactive_clients.append(client)
         self.busy_clients.remove(client)
         # тут надо что-то с оплатой придумать
-
-    #DELETE
-    def is_id_in_busy_clients(self, srch_id: uuid) -> bool:
-        for client in self.busy_clients:
-            if srch_id == client.get_order_id():
-                return True
-        return False

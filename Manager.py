@@ -1,11 +1,9 @@
 from Clients.Clients_manager import ClientsManager
 from Driver.Taxists_manager import TaxistManager
-from Map import Map
 from Order.Orders_database import OrderDataBase
+from Map import Map
 from Drawer import Drawer
 from Timer import Timer
-
-orders = OrderDataBase()
 
 
 class Manager:
@@ -18,30 +16,26 @@ class Manager:
         names = open('Data/names.txt')
         self.__map.download_places(names)
         self.__timer = Timer()
+        self.orders = OrderDataBase()
 
     def tick(self):
         self.__timer.minute_tick()
-
         i = 0
         while i < len(self.__taxists_manager.busy_drivers):
             driver = self.__taxists_manager.busy_drivers[i]
             if driver.is_finished:
-                driver.release() #TODO
+                curr_id = driver.get_order_id
+                client = self.orders.order_dict[curr_id][1]
+                client.set_location(self.orders.order_dict[curr_id][2].get_arrival_point)
+                driver.set_location(self.orders.order_dict[curr_id][2].get_arrival_point)
+                driver.release()
                 self.__taxists_manager.busy_drivers.remove(driver)
                 self.__taxists_manager.add_to_active(driver)
+                self.__clients_manager.closing_order(client)
+                self.orders.delete_order(curr_id)
                 i -= 1
                 print('\033[44mDriver {} has completed the trip!\033[0m'.format(driver.get_full_name))
             i += 1
-
-        # прохожусь по базе заказов, если в бизи таксистах нет такого заказа - удаляю из базы заказ
-        for key in orders.order_dict:
-            if not self.__taxists_manager.is_id_in_busy_drivers(key):
-                orders.delete_order(key)
-
-        # прохожусь по бизи клиентам, если не нашел по айдишнику в базе заказов - для клиента закончилась поезка (списали бабки)
-        for client in self.__clients_manager.busy_clients:
-            if not orders.is_in_base(client.get_order_id()):
-                self.__clients_manager.closing_order(client)
 
     def starting(self):
         self.__taxists_manager.download_drivers('Data/data_file.json')
@@ -63,7 +57,7 @@ class Manager:
                     driver = self.__taxists_manager.search_free_driver(order)
                 drawer = Drawer(driver, order)
                 drawer.draw_order()
-                orders.add_order((client, driver))
+                self.orders.add_order((driver, client, order))
             else:
                 print('PEI PIVO')
                 break
