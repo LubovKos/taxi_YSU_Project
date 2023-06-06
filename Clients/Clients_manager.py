@@ -20,18 +20,6 @@ class ClientsManager:
             return False
         return True
 
-    def __choose_client(self) -> int:
-        while True:
-            print('Выберите клиента из списка:')
-            for i in range(len(self.__active_clients)):
-                print('Клиент №{}: {}'.format(i + 1, self.__active_clients[i].get_name))
-            client_number = int(input())
-            if 1 <= client_number <= len(self.__active_clients):
-                print('Клиент №{} выбран!'.format(client_number))
-                break
-            print('Ошибка ввода, повторите!')
-        return client_number - 1
-
     def download_clients(self, file: str) -> None:
         with open(file, "r") as read_file:
             data = json.load(read_file)
@@ -52,15 +40,26 @@ class ClientsManager:
                 self.__inactive_clients.remove(clients)
             i -= 1
 
-    def create_order(self) -> Order:
-        client_number = self.__choose_client()
-        curr_client = self.__active_clients[client_number]
-        self.busy_clients.append(self.__active_clients.pop(client_number))
+    def choose_client(self) -> Client:
+        while True:
+            print('Выберите клиента из списка:')
+            for i in range(len(self.__active_clients)):
+                print('Клиент №{}: {}'.format(i + 1, self.__active_clients[i].get_name))
+            client_number = int(input())
+            if 1 <= client_number <= len(self.__active_clients):
+                print('Клиент №{} выбран!'.format(client_number))
+                break
+            print('Ошибка ввода, повторите!')
 
+        chosen_client = self.__active_clients[client_number - 1]
+        self.__active_clients.remove(chosen_client)
+        self.busy_clients.append(chosen_client)
+
+        return chosen_client
+
+    def create_order(self) -> Order:
         print('Сформируйте заказ!')
         curr_order = Order()
-        curr_client.set_order_id(curr_order.get_id)
-        curr_order.set_depart_point(curr_client.location)
         curr_order.input_arrival_point()
         curr_order.input_tariff()
         print('Заказ сформирован')
@@ -76,6 +75,7 @@ class ClientsManager:
         self.busy_clients.remove(client)
         # тут надо что-то с оплатой придумать
 
+    #DELETE
     def is_id_in_busy_clients(self, srch_id: uuid) -> bool:
         for client in self.busy_clients:
             if srch_id == client.get_order_id():

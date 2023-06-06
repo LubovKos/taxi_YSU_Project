@@ -80,17 +80,6 @@ class TaxistManager:
         return None
 
     def tick(self):
-        i = 0
-        while i < len(self.busy_drivers):
-            driver = self.busy_drivers[i]
-            if driver.is_finished:
-                driver.release()
-                self.busy_drivers.remove(driver)
-                self.__active_drivers.append(driver)
-                i -= 1
-                print('\033[44mDriver {} has completed the trip!\033[0m'.format(driver.get_full_name))
-            i += 1
-
         for driver in self.__active_drivers:
             pass
             # сделать рандомизацию передвижения незанятых водителей
@@ -100,3 +89,6 @@ class TaxistManager:
             if srch_id == driver.get_order_id():
                 return True
         return False
+
+    def add_to_active(self, driver: Driver):
+        self.__active_drivers.append(driver)

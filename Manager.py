@@ -3,8 +3,8 @@ from Driver.Taxists_manager import TaxistManager
 from Map import Map
 from Order.Orders_database import OrderDataBase
 from Drawer import Drawer
+from Timer import Timer
 
-global orders
 orders = OrderDataBase()
 
 
@@ -17,10 +17,22 @@ class Manager:
         self.__map.download_connection(places)
         names = open('Data/names.txt')
         self.__map.download_places(names)
-        #self.__orders = OrderDataBase()
+        self.__timer = Timer()
 
     def tick(self):
-        self.__taxists_manager.tick()
+        self.__timer.minute_tick()
+
+        i = 0
+        while i < len(self.__taxists_manager.busy_drivers):
+            driver = self.__taxists_manager.busy_drivers[i]
+            if driver.is_finished:
+                driver.release() #TODO
+                self.__taxists_manager.busy_drivers.remove(driver)
+                self.__taxists_manager.add_to_active(driver)
+                i -= 1
+                print('\033[44mDriver {} has completed the trip!\033[0m'.format(driver.get_full_name))
+            i += 1
+
         # прохожусь по базе заказов, если в бизи таксистах нет такого заказа - удаляю из базы заказ
         for key in orders.order_dict:
             if not self.__taxists_manager.is_id_in_busy_drivers(key):
@@ -37,15 +49,21 @@ class Manager:
         self.__clients_manager.download_clients('Data/clients_data_file.json')
         self.__clients_manager.activate_clients()
         while True:
-            self.__taxists_manager.tick()
+            self.tick()
             if self.__clients_manager.have_seeking_clients:
+                client = self.__clients_manager.choose_client()
                 order = self.__clients_manager.create_order()
+                order.set_start_time(self.__timer.get_time)
+                order.set_depart_point(client.get_location)
                 order.calc_duration(self.__map.calc_distance(order.get_departure_point, order.get_arrival_point))
-                orders.add_order(order)
                 print('Идёт поиск машины...')
                 driver = self.__taxists_manager.search_free_driver(order)
                 while driver is None:
-                    self.__taxists_manager.tick()
+                    self.tick()
                     driver = self.__taxists_manager.search_free_driver(order)
                 drawer = Drawer(driver, order)
                 drawer.draw_order()
+                orders.add_order((client, driver))
+            else:
+                print('PEI PIVO')
+                break

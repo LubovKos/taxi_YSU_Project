@@ -1,3 +1,4 @@
+import math
 import uuid
 
 with open('Data/names.txt') as file:
@@ -13,7 +14,8 @@ class Order:
         self.__departure_point: str = ""
         self.__arrival_point: str = ""
         self.__tariff: str = ""
-        self.__id: uuid = uuid.uuid4()
+        self.__id: uuid = uuid.uuid4() #DELETE
+        self.__start_time = None
         self.__duration = None
         self.__cost = None
 
@@ -32,6 +34,17 @@ class Order:
     @property
     def get_tariff(self):
         return self.__tariff
+
+    @property
+    def get_start_time(self):
+        return self.__start_time
+
+    @property
+    def get_duration(self):
+        return self.__duration
+
+    def set_start_time(self, time: int):
+        self.__start_time = time
 
     def set_tariff(self, new_tariff):
         self.__tariff = new_tariff
@@ -64,13 +77,9 @@ class Order:
                 break
             print('Ошибка ввода, повторите!')
 
-    @property
-    def get_duration(self):
-        return self.__duration
-
     def calc_duration(self, distance: int):
         print(distance)
-        self.__duration = float(distance / (8.61 * 60))
+        self.__duration = math.ceil(distance / (8.61 * 60))
 
     def calc_cost(self):
 
@@ -109,19 +118,3 @@ class Order:
                 print('Ошибка ввода!')
 
         print('Спасибо за оплату!')
-
-
-"""
-    def set_tariff(self, tar: str) -> str:
-        while True:
-            print("Введите тариф:")
-            for i in range(len(self.__all_rate)): #
-                print("Тариф №{}: {}".format(i + 1, self.__all_rate[i]))
-            rate = input().lower().strip()
-            if 0 <= rate < len(self.__all_rate):
-                print("Тариф №{} выбран!".format(rate))
-                break
-            print("Ошибка ввода, повторите!")
-            break
-        return rate
-"""
