@@ -4,6 +4,9 @@ from Map import Map
 from Order.Orders_database import OrderDataBase
 from Drawer import Drawer
 
+global orders
+orders = OrderDataBase()
+
 
 class Manager:
     def __init__(self):
@@ -14,18 +17,18 @@ class Manager:
         self.__map.download_connection(places)
         names = open('Data/names.txt')
         self.__map.download_places(names)
-        self.__orders = OrderDataBase()
-    
+        #self.__orders = OrderDataBase()
+
     def tick(self):
         self.__taxists_manager.tick()
         # прохожусь по базе заказов, если в бизи таксистах нет такого заказа - удаляю из базы заказ
-        for key in self.__orders.order_dict:
+        for key in orders.order_dict:
             if not self.__taxists_manager.is_id_in_busy_drivers(key):
-                self.__orders.delete_order(key)
+                orders.delete_order(key)
 
         # прохожусь по бизи клиентам, если не нашел по айдишнику в базе заказов - для клиента закончилась поезка (списали бабки)
         for client in self.__clients_manager.busy_clients:
-            if not self.__orders.is_in_base(client.get_order_id()):
+            if not orders.is_in_base(client.get_order_id()):
                 self.__clients_manager.closing_order(client)
 
     def starting(self):
@@ -37,12 +40,12 @@ class Manager:
             self.__taxists_manager.tick()
             if self.__clients_manager.have_seeking_clients:
                 order = self.__clients_manager.create_order()
-                order.calc_duration(self.__map.calc_distance(order.get_departure_point(), order.get_arrival_point()))
-                self.__orders.add_order(order)
+                order.calc_duration(self.__map.calc_distance(order.get_departure_point, order.get_arrival_point))
+                orders.add_order(order)
                 print('Идёт поиск машины...')
                 driver = self.__taxists_manager.search_free_driver(order)
                 while driver is None:
                     self.__taxists_manager.tick()
                     driver = self.__taxists_manager.search_free_driver(order)
-                drawer = Drawer(driver)
+                drawer = Drawer(driver, order)
                 drawer.draw_order()

@@ -3,6 +3,7 @@ import uuid
 
 from Order.Order import Order
 from Driver.Car import Car
+import Manager
 
 
 class Driver:
@@ -32,6 +33,10 @@ class Driver:
 
     # освободить водителя
     def release(self):
+        for key in Manager.orders.order_dict.keys():
+            if key == self.__order_id:
+                self.set_location(Manager.orders.order_dict[key].get_arrival_point)
+                break
         self.__order_id = None
         self.__is_busy = False
 
@@ -42,6 +47,10 @@ class Driver:
     @property
     def get_location(self):
         return self.__location
+
+    @property
+    def get_duration_trip(self):
+        return self.__duration_trip
 
     @property
     def get_full_name(self):

@@ -1,5 +1,5 @@
 import uuid
-from Order import Order
+from Order.Order import Order
 
 
 class MyOrder(type):
@@ -18,14 +18,14 @@ class OrderDataBase(metaclass=MyOrder):
         self.order_dict = {}
 
     def add_order(self, new_order: Order):
-        self.__order_dict[new_order.get_id] = Order
+        self.order_dict[new_order.get_id] = new_order
 
     def delete_order(self, del_id: str):
-        self.__order_dict.pop(del_id)
+        self.order_dict.pop(del_id)
 
     def output_orders(self):
-        for key, value in self.__order_dict.items():
+        for key, value in self.order_dict.items():
             print(key)
             
     def is_in_base(self, search_id: uuid) -> bool:
-        return search_id in self.__order_dict
+        return search_id in self.order_dict

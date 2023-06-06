@@ -21,9 +21,11 @@ class Order:
     def get_id(self):
         return self.__id
 
+    @property
     def get_departure_point(self):
         return self.__departure_point
 
+    @property
     def get_arrival_point(self):
         return self.__arrival_point
 
@@ -56,7 +58,7 @@ class Order:
 
         while True:
             tariff = int(input())
-            if 1 <= tariff <= len(tariff_list):
+            if 1 <= tariff <= len(tariff_list) and tariff != '\n':
                 print('Тариф {} выбран!'.format(tariff))
                 self.__tariff = tariff_list[tariff - 1]
                 break
