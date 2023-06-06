@@ -74,27 +74,27 @@ class Order:
 
     def calc_cost(self):
 
-        economy_km = 0.09
+        economy_m = 0.009
         economy_time = 4
         economy_landing = 90
-        comfort_km = 0.1
+        comfort_m = 0.01
         comfort_time = 4
         comfort_landing = 155
-        business_km = 0.2
+        business_m = 0.02
         business_time = 10
         business_landing = 320
 
         distance = self.__duration * 8.61 * 60
 
         if self.__tariff == 'economy class':
-            self.__cost = economy_landing + economy_time * self.__duration + \
-                          economy_km * distance
+            self.__cost = int(economy_landing + economy_time * self.__duration + \
+                          economy_m * distance)
         elif self.__tariff == 'comfort class':
-            self.__cost = comfort_landing + comfort_time * self.__duration + \
-                          comfort_km * distance
+            self.__cost = int(comfort_landing + comfort_time * self.__duration + \
+                          comfort_m * distance)
         else:
-            self.__cost = business_landing + business_time * self.__duration + \
-                          business_km * distance
+            self.__cost = int(business_landing + business_time * self.__duration + \
+                          business_m * distance)
 
     def payment_process(self):
         print('Стоимость поездки составила:', self.__cost)
