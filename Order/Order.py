@@ -1,7 +1,7 @@
 import math
 import uuid
 
-with open('Data/names.txt') as file:
+with open('../Data/names.txt') as file:
     points = [line.rstrip() for line in file]
 
 tariff_list = ['economy class', 'comfort class', 'business class']
@@ -63,29 +63,29 @@ class Order:
         self.__cost = cost
 
     def input_arrival_point(self):
-        print('Input arrival point of the route:')
+        print('Введите конечную точку маршрута:')
         while True:
             for i in range(len(points)):
-                print('Point №{}: {}'.format(i + 1, points[i]))
+                print('Пункт №{}: {}'.format(i + 1, points[i]))
             arrival_point = input().strip()
             if arrival_point in points:
-                print('Arrival point {} was chosen!'.format(arrival_point))
+                print('Конечный пункт {} выбран!'.format(arrival_point))
                 self.__arrival_point = arrival_point
                 break
-            print('Incorrect input, try again!')
+            print('Ошибка ввода, повторите!')
 
     def input_tariff(self):
-        print('Input the tariff:')
+        print('Введите тариф:')
         for i in range(len(tariff_list)):
-            print("Tariff №{}: {}".format(i + 1, tariff_list[i]))
+            print("Тариф №{}: {}".format(i + 1, tariff_list[i]))
 
         while True:
             tariff = int(input())
             if 1 <= tariff <= len(tariff_list) and tariff != '\n':
-                print('Tariff {} was chosen!'.format(tariff))
+                print('Тариф {} выбран!'.format(tariff))
                 self.__tariff = tariff_list[tariff - 1]
                 break
-            print('Incorrect input, try again!')
+            print('Ошибка ввода, повторите!')
 
     def calc_duration(self, distance: int):
         """
