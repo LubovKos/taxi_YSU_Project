@@ -28,7 +28,7 @@ class TaxistManager:
         for elem in self.__inactive_drivers:
             elem.print_info()
 
-    def activate_drivers(self):
+    def activate_drivers(self) -> None:
         if len(self.__inactive_drivers) == 0:
             return
         random_integer_array = numpy.random.random_integers(0, len(self.__inactive_drivers) - 1, 6)
@@ -79,16 +79,7 @@ class TaxistManager:
             return suitable_driver
         return None
 
-    def tick(self):
-        for driver in self.__active_drivers:
-            pass
-            # сделать рандомизацию передвижения незанятых водителей
-
-    def is_id_in_busy_drivers(self, srch_id: uuid) -> bool:
-        for driver in self.busy_drivers:
-            if srch_id == driver.get_order_id():
-                return True
-        return False
-
-    def add_to_active(self, driver: Driver):
+    def closing_order(self, driver: Driver):
+        driver.release()
+        self.busy_drivers.remove(driver)
         self.__active_drivers.append(driver)

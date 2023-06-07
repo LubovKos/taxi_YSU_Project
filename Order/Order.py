@@ -14,7 +14,7 @@ class Order:
         self.__departure_point: str = ""
         self.__arrival_point: str = ""
         self.__tariff: str = ""
-        self.__id: uuid = uuid.uuid4() #DELETE
+        self.__id: uuid = uuid.uuid4()
         self.__start_time = None
         self.__duration = None
         self.__cost = None
@@ -43,6 +43,10 @@ class Order:
     def get_duration(self):
         return self.__duration
 
+    @property
+    def get_cost(self):
+        return self.__cost
+
     def set_start_time(self, time: int):
         self.__start_time = time
 
@@ -51,6 +55,9 @@ class Order:
 
     def set_depart_point(self, point: str):
         self.__departure_point = point
+
+    def set_cost(self, cost: int):
+        self.__cost = cost
 
     def input_arrival_point(self):
         print('Введите конечную точку маршрута:')
@@ -79,7 +86,7 @@ class Order:
 
     def calc_duration(self, distance: int):
         print(distance)
-        self.__duration = math.ceil(distance / (8.61 * 60))
+        self.__duration = math.ceil(distance / 8.61)
 
     def calc_cost(self):
 
@@ -93,28 +100,14 @@ class Order:
         business_time = 10
         business_landing = 320
 
-        distance = self.__duration * 8.61 * 60
+        distance = self.__duration * 8.61 / 60
 
         if self.__tariff == 'economy class':
             self.__cost = int(economy_landing + economy_time * self.__duration + \
-                          economy_m * distance)
+                              economy_m * distance)
         elif self.__tariff == 'comfort class':
             self.__cost = int(comfort_landing + comfort_time * self.__duration + \
-                          comfort_m * distance)
+                              comfort_m * distance)
         else:
             self.__cost = int(business_landing + business_time * self.__duration + \
-                          business_m * distance)
-
-    def payment_process(self):
-        print('Стоимость поездки составила:', self.__cost)
-        print('Выберите способ оплаты:', '1. Оплата наличными',
-              '2. Оплата по карте', sep='\n')
-
-        while True:
-            payment_method = int(input())
-            if payment_method == 1 or payment_method == 2:
-                break
-            else:
-                print('Ошибка ввода!')
-
-        print('Спасибо за оплату!')
+                              business_m * distance)

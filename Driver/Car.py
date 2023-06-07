@@ -1,9 +1,11 @@
 class Car:
-    """docstring"""
+    """
+    Class for creating and storing data
+    about cars leaving for orders
+    """
 
     def __init__(self, license_plate: str, color: str, brand: str,
                  child_seat_availability: bool, category: str, image: str) -> None:
-        """Constructor with parameters"""
         self.__license_plate = license_plate
         self.__color = color
         self.__brand = brand
@@ -34,4 +36,3 @@ class Car:
     @property
     def get_brand(self):
         return self.__brand
-    

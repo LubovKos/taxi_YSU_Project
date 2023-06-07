@@ -8,9 +8,13 @@ from Map import Map
 
 
 class ClientsManager:
+    """
+       The class manages clients, transfers them
+       from inactive to active and busy
+       """
     def __init__(self):
-        self.__inactive_clients: list[Client] = []
         self.busy_clients: list[Client] = []
+        self.__inactive_clients: list[Client] = []
         self.__active_clients: list[Client] = []
         self.__map: Map = Map()
 
@@ -65,14 +69,6 @@ class ClientsManager:
 
         return chosen_client
 
-    def create_order(self) -> Order:
-        print('Сформируйте заказ!')
-        curr_order = Order()
-        curr_order.input_arrival_point()
-        curr_order.input_tariff()
-        print('Заказ сформирован')
-        return curr_order
-
     def closing_order(self, client: Client):
         """
         Order completion method:
@@ -80,4 +76,3 @@ class ClientsManager:
         """
         self.__inactive_clients.append(client)
         self.busy_clients.remove(client)
-        # тут надо что-то с оплатой придумать

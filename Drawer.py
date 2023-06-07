@@ -14,10 +14,10 @@ class Drawer:
     """Method of displaying information about the driver and the car"""
     def draw_order(self):
         space = '\n    '
-        order_info = 'WAITING TIME:' + str(int(self.__driver.get_duration_trip - self.__order.get_duration))
+        order_info = 'WAITING TIME:' + str(int((self.__driver.get_duration_trip - self.__order.get_duration) / 60))
         order_info += '\nDEPARTURE: ' + self.__order.get_departure_point
         order_info += '\nARRIVAL: ' + self.__order.get_arrival_point
-        order_info += '\nTRIP TIME: ' + str(int(self.__order.get_duration))
+        order_info += '\nTRIP TIME: ' + str(int(self.__order.get_duration / 60))
         driver_info = 'CAR: ' + self.__car.get_license_plate + space \
                       + self.__car.get_color + ' ' + self.__car.get_brand + space \
                       + self.__car.get_category

@@ -5,7 +5,6 @@ class Client:
                  phone_number: str,
                  bonuses: int, name: str,
                  location: str = None):
-        self.__order_id = -1
         self.__name = name
         self.__requisites = requisites
         self.__bonuses = bonuses
@@ -17,17 +16,19 @@ class Client:
         return self.__name
 
     @property
-    def get_order_id(self):
-        return self.__order_id
-
-    @property
     def get_location(self):
         return self.__location
 
-    def set_order_id(self, new_id):
-        self.__order_id = new_id
+    @property
+    def get_bonuses(self):
+        return self.__bonuses
+
+    @property
+    def get_requisites(self):
+        return self.__requisites
 
     def set_location(self, location: str):
         self.__location = location
 
-
+    def set_bonuses(self, bonuses: int):
+        self.__bonuses = bonuses
