@@ -1,0 +1,65 @@
+[
+    {
+        "name": "Zhukov Ivan Viktorovich",
+        "requisites": "8976 3577 0886 0974",
+        "bonuses": 201,
+        "phone_number": "89806258767",
+        "location": "Middle village"
+    },
+    {
+        "name": "Ivanov Nikolay Olegovich",
+        "requisites": "5760 9754 8548 0844",
+        "bonuses": 10,
+        "phone_number": "89809378890",
+        "location": "Provincial College"
+    },
+    {
+        "name": "Lanovoy Dmitriy Konstantinovich",
+        "requisites": "9747 9751 4134 6480",
+        "bonuses": 45,
+        "phone_number": "89679804531",
+        "location": "Oktyabrskaya Square"
+    },
+    {
+        "name": "Polyakova Alisa Edvardovna",
+        "requisites": "9384 6378 3580 6469",
+        "bonuses": 129,
+        "phone_number": "89752458635",
+        "location": "Torgoviy pereulok"
+    },
+    {
+        "name": "Tverskoy Yuriy Mikchailovich",
+        "requisites": "3579 4269 4780 4307",
+        "bonuses": 84,
+        "phone_number": "89809538645",
+        "location": "Vcusno and tochka"
+    },
+    {
+        "name": "Zimova Anastasia Maksimovna",
+        "requisites": "2950 6302 7936 7584",
+        "bonuses": 91,
+        "phone_number": "89891371289",
+        "location": "Sovetskaya Square"
+    },
+    {
+        "name": "Petrov Nikita Aleksandrovich",
+        "requisites": "9258 7437 5227 8482",
+        "bonuses": 1,
+        "phone_number": "89806292409",
+        "location": "Bogoyavlenskaya Square"
+    },
+    {
+        "name": "Krasnova Vera Vitalievna",
+        "requisites": "8530 2606 4270 4800",
+        "bonuses": 0,
+        "phone_number": "89809258364",
+        "location": "Middle village"
+    },
+    {
+        "name": "Sobolev Mikchail Petrovich",
+        "requisites": "6489 2568 2678 3780",
+        "bonuses": 9,
+        "phone_number": "89806258914",
+        "location": "Faculty of Mathematics of Yarsu"
+    }
+]
