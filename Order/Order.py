@@ -63,29 +63,29 @@ class Order:
         self.__cost = cost
 
     def input_arrival_point(self):
-        print('Введите конечную точку маршрута:')
+        print('Input arrival point of the route:')
         while True:
             for i in range(len(points)):
-                print('Пункт №{}: {}'.format(i + 1, points[i]))
+                print('Point №{}: {}'.format(i + 1, points[i]))
             arrival_point = input().strip()
             if arrival_point in points:
-                print('Конечный пункт {} выбран!'.format(arrival_point))
+                print('Arrival point {} was chosen!'.format(arrival_point))
                 self.__arrival_point = arrival_point
                 break
-            print('Ошибка ввода, повторите!')
+            print('Incorrect input, try again!')
 
     def input_tariff(self):
-        print('Введите тариф:')
+        print('Input the tariff:')
         for i in range(len(tariff_list)):
-            print("Тариф №{}: {}".format(i + 1, tariff_list[i]))
+            print("Tariff №{}: {}".format(i + 1, tariff_list[i]))
 
         while True:
             tariff = int(input())
             if 1 <= tariff <= len(tariff_list) and tariff != '\n':
-                print('Тариф {} выбран!'.format(tariff))
+                print('Tariff {} was chosen!'.format(tariff))
                 self.__tariff = tariff_list[tariff - 1]
                 break
-            print('Ошибка ввода, повторите!')
+            print('Incorrect input, try again!')
 
     def calc_duration(self, distance: int):
         """

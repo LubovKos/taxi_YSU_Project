@@ -54,14 +54,14 @@ class ClientsManager:
         and transfer them from active to busy
         """
         while True:
-            print('Выберите клиента из списка:')
+            print('Choose client from the list:')
             for i in range(len(self.__active_clients)):
-                print('Клиент №{}: {}'.format(i + 1, self.__active_clients[i].get_name))
+                print('Client №{}: {}'.format(i + 1, self.__active_clients[i].get_name))
             client_number = int(input())
             if 1 <= client_number <= len(self.__active_clients):
-                print('Клиент №{} выбран!'.format(client_number))
+                print('Client №{} was chosen!'.format(client_number))
                 break
-            print('Ошибка ввода, повторите!')
+            print('Incorrect input, try again!')
 
         chosen_client = self.__active_clients[client_number - 1]
         self.__active_clients.remove(chosen_client)

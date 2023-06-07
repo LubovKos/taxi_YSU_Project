@@ -13,11 +13,11 @@ from Timer import Timer
 
 
 def create_order() -> Order:
-    print('Сформируйте заказ!')
+    print('Create the order!')
     curr_order = Order()
     curr_order.input_arrival_point()
     curr_order.input_tariff()
-    print('Заказ сформирован')
+    print('Order was created')
     return curr_order
 
 
@@ -42,25 +42,25 @@ class Manager:
         """
         A function that manages payment and write-offs
         """
-        print('Стоимость поездки составила:', order.get_cost)
-        print('Выберите способ оплаты:', '1. Оплата наличными',
-              '2. Оплата по карте', sep='\n')
+        print('Cost of trip is:', order.get_cost)
+        print('Choose the way of payment:', '1. Cash',
+              '2. Card', sep='\n')
 
         while True:
             payment_method = int(input())
             if payment_method == 1 or payment_method == 2:
                 break
             else:
-                print('Ошибка ввода!')
+                print('Incorrect input!')
 
-        print('Количество бонусов:', client.get_bonuses)
-        print('Списать бонусы?', '1. Да', '2. Нет')
+        print('Number of bonuses:', client.get_bonuses)
+        print('Write off bonuses?', '1. Yes', '2. No')
         while True:
             is_used_bonus = int(input())
             if is_used_bonus == 1 or is_used_bonus == 2:
                 break
             else:
-                print('Ошибка ввода!')
+                print('Incorrect input!')
         if is_used_bonus == 1:
             if client.get_bonuses < int(order.get_cost / 2):
                 order.set_cost(order.get_cost - client.get_bonuses)
@@ -70,11 +70,11 @@ class Manager:
                 client.set_bonuses(client.get_bonuses - int(order.get_cost))
         else:
             client.set_bonuses(client.get_bonuses + int(order.get_cost / 100 * 5))
-            print('Вам начислены бонусы:', client.get_bonuses)
+            print('You get bonuses:', client.get_bonuses)
 
         self.bank.money_transfer(order.get_cost, client.get_requisites, driver.get_bank)
 
-        print('Спасибо за оплату!')
+        print('Payment has been made!')
 
     def tick(self):
         """
@@ -113,7 +113,7 @@ class Manager:
                 order.set_start_time(self.__timer.get_time)
                 order.set_depart_point(client.get_location)
                 order.calc_duration(self.__map.calc_distance(order.get_departure_point, order.get_arrival_point))
-                print('Идёт поиск машины...')
+                print('Searching for driver...')
                 driver = self.__taxists_manager.search_free_driver(order)
                 while driver is None:
                     self.tick()
@@ -126,5 +126,5 @@ class Manager:
                 self.tick()
                 time.sleep(5)
                 if len(self.orders.order_dict) == 0:
-                    print('Вызовов нет')
+                    print('No orders')
                     break
