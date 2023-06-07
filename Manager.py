@@ -22,6 +22,10 @@ def create_order() -> Order:
 
 
 class Manager:
+    """
+    The class manages the application, writes off funds,
+    starts and ends the trip, keeps track of time
+    """
     def __init__(self):
         self.__taxists_manager = TaxistManager()
         self.__clients_manager = ClientsManager()
@@ -35,6 +39,9 @@ class Manager:
         self.bank = Bank()
 
     def payment_process(self, order: Order, client: Client, driver: Driver):
+        """
+        A function that manages payment and write-offs
+        """
         print('Стоимость поездки составила:', order.get_cost)
         print('Выберите способ оплаты:', '1. Оплата наличными',
               '2. Оплата по карте', sep='\n')
@@ -70,6 +77,9 @@ class Manager:
         print('Спасибо за оплату!')
 
     def tick(self):
+        """
+        A function that simulates the process of a trip
+        """
         self.__timer.minute_tick()
         i = 0
         while i < len(self.__taxists_manager.busy_drivers):
@@ -88,6 +98,9 @@ class Manager:
             i += 1
 
     def starting(self):
+        """
+        The function that launches the program
+        """
         self.__taxists_manager.download_drivers('Data/data_file.json')
         self.__taxists_manager.activate_drivers()
         self.__clients_manager.download_clients('Data/clients_data_file.json')

@@ -12,15 +12,14 @@ class MyMap(type):
 
 
 class Map(metaclass=MyMap):
-    """Constructor"""
     def __init__(self):
         self.__adj_matrix = []
         self.__adj_list = []
         self.__stops_count = 0
         self.__stops_names = {}
 
-    """Setting the adjacency matrix for the map"""
     def download_connection(self, f: TextIO) -> None:
+        """Setting the adjacency matrix for the map"""
         contents = f.read()
         for string in contents.split("\n"):
             if len(string) != 0:
@@ -35,16 +34,16 @@ class Map(metaclass=MyMap):
                 index += 1
         self.__stops_count = len(self.__adj_list)
 
-    """Downloading places on the map"""
     def download_places(self, f: TextIO) -> None:
+        """Downloading places on the map"""
         contents = f.read()
         counter = 0
         for string in contents.split("\n"):
             self.__stops_names[string] = counter
             counter += 1
 
-    """Dijkstra algorithm for calculating distance"""
     def calc_distance(self, start: str, end: str) -> int:
+        """Dijkstra algorithm for calculating distance"""
 
         start_point = self.__stops_names[start]
         end_point = self.__stops_names[end]

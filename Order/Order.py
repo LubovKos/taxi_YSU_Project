@@ -8,7 +8,10 @@ tariff_list = ['economy class', 'comfort class', 'business class']
 
 
 class Order:
-    """docstring"""
+    """
+    A class that stores information
+    about an order
+    """
 
     def __init__(self):
         self.__departure_point: str = ""
@@ -85,11 +88,15 @@ class Order:
             print('Ошибка ввода, повторите!')
 
     def calc_duration(self, distance: int):
-        print(distance)
+        """
+        Function that calculates travel time
+        """
         self.__duration = math.ceil(distance / 8.61)
 
     def calc_cost(self):
-
+        """
+        Function that calculates the cost for each tariff
+        """
         economy_m = 0.009
         economy_time = 4
         economy_landing = 90
@@ -100,14 +107,14 @@ class Order:
         business_time = 10
         business_landing = 320
 
-        distance = self.__duration * 8.61 / 60
+        distance = (self.__duration * 8.61) / 60
 
         if self.__tariff == 'economy class':
-            self.__cost = int(economy_landing + economy_time * self.__duration + \
+            self.__cost = int(economy_landing + economy_time * self.__duration / 60 + \
                               economy_m * distance)
         elif self.__tariff == 'comfort class':
-            self.__cost = int(comfort_landing + comfort_time * self.__duration + \
+            self.__cost = int(comfort_landing + comfort_time * self.__duration / 60 + \
                               comfort_m * distance)
         else:
-            self.__cost = int(business_landing + business_time * self.__duration + \
+            self.__cost = int(business_landing + business_time * self.__duration / 60 + \
                               business_m * distance)

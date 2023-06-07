@@ -1,11 +1,8 @@
 import math
-import time
-import uuid
 
 from Order.Order import Order
 from Driver.Car import Car
 from Timer import Timer
-import Manager
 
 
 class Driver:

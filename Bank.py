@@ -11,6 +11,10 @@ def download_base() -> dict:
 
 
 class Bank:
+    """
+    Class for changing the account
+    of the client and the driver
+    """
     def __init__(self):
         self.__client_base = download_base()
 

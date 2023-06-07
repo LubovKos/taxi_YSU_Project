@@ -6,6 +6,9 @@ from Order.Order import Order
 
 
 class Drawer:
+    """
+    Class for visual presentation of information to the user
+    """
     def __init__(self, driver: Driver, order: Order):
         self.__driver = driver
         self.__car = driver.get_car
@@ -24,8 +27,7 @@ class Drawer:
         driver_info += '\nDRIVER: '
         driver_info += (self.__driver.get_full_name + space + self.__driver.get_location)
 
-
-        # Adding main titles
+        """ Adding main titles """
         fig, ax = plt.subplots()
         fig.set_size_inches((4, 4.5))
         fig.suptitle('Your order', fontsize=14, fontweight='bold')

@@ -5,17 +5,11 @@ from Clients.Client import Client
 from Order.Order import Order
 
 
-class MyOrder(type):
-    _instances = {}
-
-    def __call__(cls, *args, **kwargs):
-        if cls not in cls._instances:
-            cls._instances[cls] = super(MyOrder, cls).__call__(*args, **kwargs)
-        return cls._instances[cls]
-
-
-class OrderDataBase(metaclass=MyOrder):
-    """Constructor"""
+class OrderDataBase:
+    """
+    Database of orders.
+    Order management class
+    """
 
     def __init__(self):
         self.order_dict: Dict[uuid, Tuple[Driver, Client, Order]] = {}

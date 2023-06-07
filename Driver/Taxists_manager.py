@@ -1,6 +1,5 @@
 import json
 import sys
-import uuid
 import numpy
 
 from Map import Map
@@ -10,6 +9,9 @@ from Driver.Driver import Driver
 
 
 class TaxistManager:
+    """
+    Taxi driver activity management class
+    """
     def __init__(self):
         self.__inactive_drivers: list[Driver] = []
         self.busy_drivers: list[Driver] = []
@@ -29,6 +31,10 @@ class TaxistManager:
             elem.print_info()
 
     def activate_drivers(self) -> None:
+        """
+        Activates drivers from the
+        inactive pool to active ones
+        """
         if len(self.__inactive_drivers) == 0:
             return
         random_integer_array = numpy.random.random_integers(0, len(self.__inactive_drivers) - 1, 6)
@@ -44,6 +50,12 @@ class TaxistManager:
             elem.print_info()
 
     def search_free_driver(self, order: Order):
+        """
+        The function is looking for a free driver to
+        complete the order. If there is no free driver of
+        the selected type to complete the order,
+        then selects an available driver from another tariff
+        """
         if len(self.__active_drivers) != 0:
             driver_found = False
             minimal_dist = sys.maxsize
